@@ -8,7 +8,7 @@ exports.addProductShoppingCart = catchAsync(async (req, res) => {
   const foundCartPending = await Shoppingcart.findOne({status:"PENDING"});
   let foundProduct=await Product.findById(req.body.product);
   if (foundProduct){
-    console.log(foundProduct);
+    
     let price= foundProduct.price;
     let rate=foundProduct.discountRate;
     if(isNaN(rate))
@@ -55,7 +55,6 @@ exports.deleteProductByIdFromShoppingCart = catchAsync(async(req, res) => {
   
   const foundCartPending = await Shoppingcart.findOne({status:"PENDING",user:req.user._id.valueOf()});
    if(foundCartPending){
-    console.log(foundCartPending.listProduct);
     const foundProduct = foundCartPending.listProduct.find((p) => p.product == req.params.id);
    
       if (foundProduct) {
@@ -94,7 +93,7 @@ exports.deleteProductByIdFromShoppingCart = catchAsync(async(req, res) => {
 
 exports.payShoppingCart = catchAsync(async (req, res) => {
  
-  const foundCartPending = await Shoppingcart.findOne({status:"PENDING"});
+  const foundCartPending = await Shoppingcart.findOne({status:"PENDING",user:req.user._id.valueOf()});
 
   if (foundCartPending && foundCartPending.listProduct.length>0) {
     foundCartPending.status="PAID";
