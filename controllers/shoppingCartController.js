@@ -53,7 +53,7 @@ exports.addProductShoppingCart = catchAsync(async (req, res) => {
 });
 exports.deleteProductByIdFromShoppingCart = catchAsync(async(req, res) => {
   
-  const foundCartPending = await Shoppingcart.findOne({status:"PENDING"});
+  const foundCartPending = await Shoppingcart.findOne({status:"PENDING",user:req.user._id.valueOf()});
    if(foundCartPending){
     console.log(foundCartPending.listProduct);
     const foundProduct = foundCartPending.listProduct.find((p) => p.product == req.params.id);
