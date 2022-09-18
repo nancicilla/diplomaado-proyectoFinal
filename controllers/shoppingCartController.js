@@ -46,7 +46,7 @@ exports.addProductShoppingCart = catchAsync(async (req, res) => {
   }else{
     res.status(404).json({
       status: "Not found",
-      message:"Product add to shopping cart",
+      message:"Product not exist",
       
     });
   } 
