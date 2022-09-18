@@ -20,8 +20,8 @@ app.use((req, res, next) => {
 app.use("/api/v1/products/", productRouter);
 app.use("/api/v1/users/", userRouter);
 app.use("/api/v1/auth/", authRouter);
-app.use("/api/v1/car/product/", shoppingCartRouter);
-app.use("/api/v1/car/pay/", payShoppingCartRouter);
+app.use("/api/v1/cart/product/", shoppingCartRouter);
+app.use("/api/v1/cart/pay/", payShoppingCartRouter);
 
 app.all("*", (req, res, next) => {
   next(new MyError("route not found", 404));
